@@ -8,6 +8,10 @@ public class DoctypeMap {
             1, "patientimage",
             2, "employeeimage",
             3, "employeesign",
-            4, "companylogo"
+            4, "companylogo",
+            5, "pathologyheader",
+            6, "pathologyfooter",
+            7, "radiologyheader",
+            8, "radiologyfooter"
     );
 }
