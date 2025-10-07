@@ -12,6 +12,8 @@ public class DoctypeMap {
             5, "pathologyheader",
             6, "pathologyfooter",
             7, "radiologyheader",
-            8, "radiologyfooter"
+            8, "radiologyfooter",
+            9, "radiologyattach1",
+            10, "radiologyattach2"
     );
 }

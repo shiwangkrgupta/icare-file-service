@@ -1,18 +1,19 @@
 package com.icare.file_service.dto;
 
+
 public class SuccessResponse {
-    private String fileName;
+    private String file;
     private String filePath;
     private int statusCode;
     private String message;
     private boolean success;
 
-    public String getFileName() {
-        return fileName;
+    public String getFile() {
+        return file;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFile(String file) {
+        this.file = file;
     }
 
     public String getFilePath() {
@@ -47,13 +48,20 @@ public class SuccessResponse {
         this.success = success;
     }
 
+
     public SuccessResponse(String fileName, String filePath, int statusCode, String message, boolean success) {
-        this.fileName = fileName;
+        this.file = fileName;
         this.filePath = filePath;
         this.statusCode = statusCode;
         this.message = message;
         this.success = success;
     }
 
-
+    public SuccessResponse(String fileName, String filePath, String fileStaticPath, int statusCode, String message, boolean success) {
+        this.file = fileName;
+        this.filePath = filePath;
+        this.statusCode = statusCode;
+        this.message = message;
+        this.success = success;
+    }
 }

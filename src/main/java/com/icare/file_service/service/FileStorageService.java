@@ -65,10 +65,12 @@ public class FileStorageService {
             throw new RuntimeException(ex);
         }
 
+        String staticPath = "/" + application + "/" + documentType + "/" + fileType + "/" +  originalFilename;
+
         // Build access path only
         String path = baseUrl+ "/" + "temp" + "/" + fileName;
 
-        return new SuccessResponse(originalFilename, path, 200, "File uploaded successfully", true);
+        return new SuccessResponse(staticPath, path, 200, "File uploaded successfully", true);
     }
 
 
@@ -110,7 +112,8 @@ public class FileStorageService {
             Files.move(tempFile, finalPath, StandardCopyOption.REPLACE_EXISTING);
 
             String returnPath = baseUrl + "/" + application + "/"  + docType + "/" + fileType + "/" + originalFilename;
-            return new SuccessResponse(finalOriginalName, returnPath, 200, "File confirmed successfully", true);
+            String staticPath = "/" + application + "/"  + docType + "/" + fileType + "/" + originalFilename;
+            return new SuccessResponse(staticPath, returnPath, 200, "File confirmed successfully", true);
 
         } catch (IOException ex) {
             throw new RuntimeException("Failed to confirm file: " + ex.getMessage(), ex);
