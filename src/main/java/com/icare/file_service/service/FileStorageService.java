@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.*;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 @Service
@@ -34,6 +36,7 @@ public class FileStorageService {
         String originalFilename = "";
         String fileName = "";
         String fileType = "";
+        String uniqueFileName = "";
 
         String documentType = DoctypeMap.doctypeMap.get(docType);
         if (documentType == null) {
@@ -52,20 +55,35 @@ public class FileStorageService {
             originalFilename = file.getOriginalFilename();
             if (originalFilename != null) {
                 String [] fileNameParts = originalFilename.split("\\.");
-                fileType = fileNameParts[fileNameParts.length-1];
+                fileType = fileNameParts[fileNameParts.length-1].toLowerCase();
                 if (!allowedFileTypes.contains(fileType)){
                     throw new RuntimeException("Invalid file type, " + fileType  +" allowed file types are : " + allowedFileTypes.toString() );
                 }
+
+                // ✅ Sanitize base name
+                String baseName = originalFilename.replaceAll("\\.[^.]*$", ""); // remove extension
+                baseName = baseName.replaceAll("[^a-zA-Z0-9]", "_"); // replace special chars/spaces
+                if (baseName.length() > 10) baseName = baseName.substring(0, 10);
+
+                // ✅ Add unique suffix
+                String uniqueSuffix = String.valueOf(System.currentTimeMillis()) + UUID.randomUUID().toString().substring(0, 5); // or UUID.randomUUID().toString()
+                uniqueFileName = baseName + "_" + uniqueSuffix + "." + fileType;
+                fileName = String.join("-", application, documentType, fileType,
+                        uniqueFileName);
+
+                // Save the file
+                Path filePath = uploadPath.resolve(fileName);
+                // ✅ Properly close InputStream
+                try (InputStream inputStream = file.getInputStream()) {
+                    Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+                }
             }
-            fileName = String.join("-", application, documentType, fileType, originalFilename);
-            // Save the file
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
 
-        String staticPath = "/" + application + "/" + documentType + "/" + fileType + "/" +  originalFilename;
+        String staticPath = "/" + application + "/" + documentType + "/" + fileType + "/" +  uniqueFileName;
 
         // Build access path only
         String path = baseUrl+ "/" + "temp" + "/" + fileName;
