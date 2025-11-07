@@ -3,6 +3,7 @@ package com.icare.file_service.service;
 import com.icare.file_service.constansts.ApplicationMap;
 import com.icare.file_service.constansts.DoctypeMap;
 import com.icare.file_service.dto.SuccessResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.*;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -23,11 +25,14 @@ public class FileStorageService {
     @Value("${file.base-url}")
     private String baseUrl;
 
+    @Autowired
+    private DoctypeMap doctypeMap;
+
     private final List<String> allowedFileTypes = List.of("png", "jpeg", "pdf", "jpg", "gif", "doc", "docx");
 
     public SuccessResponse storeFile(MultipartFile file,
                                      Integer app,
-                                     Integer docType) {
+                                     Integer docTypeKey) {
         if (file.isEmpty()) {
             throw new RuntimeException("File is empty");
         }
@@ -38,7 +43,8 @@ public class FileStorageService {
         String fileType = "";
         String uniqueFileName = "";
 
-        String documentType = DoctypeMap.doctypeMap.get(docType);
+        Map<Integer, String > docMap = doctypeMap.getDoctypeMap();
+        String documentType = docMap.get(docTypeKey);
         if (documentType == null) {
             throw new RuntimeException("Invalid document type");
         }
