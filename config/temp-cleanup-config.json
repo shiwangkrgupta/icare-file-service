@@ -1,0 +1,1 @@
+{"enabled":true,"deleteOlderThanMinutes":60,"cron":"0 0/10 * * * *"}

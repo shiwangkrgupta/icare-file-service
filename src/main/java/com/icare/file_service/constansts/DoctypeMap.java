@@ -23,6 +23,7 @@ public class DoctypeMap {
         doctypeMap.put(10, "radiologyattach2");
         doctypeMap.put(11, "radiologyreport");
         doctypeMap.put(12, "pathologyreport");
+        doctypeMap.put(13, "doctorimage");
     }
 
     public Map<Integer, String> getDoctypeMap() {

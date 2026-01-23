@@ -1,0 +1,22 @@
+{
+  "applications": [
+    "lms",
+    "opd"
+  ],
+  "doctypes": [
+    "patientimage",
+    "employeeimage",
+    "employeesign",
+    "companylogo",
+    "pathologyheader",
+    "pathologyfooter",
+    "radiologyheader",
+    "radiologyfooter",
+    "radiologyattach1",
+    "radiologyattach2",
+    "radiologyreport",
+    "pathologyreport",
+    "doctorimage"
+  ]
+}
+

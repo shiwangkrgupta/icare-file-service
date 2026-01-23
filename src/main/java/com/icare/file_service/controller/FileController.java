@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api")
 public class FileController {
@@ -28,5 +30,14 @@ public class FileController {
     public ResponseEntity<SuccessResponse> confirmFile(@RequestParam("filename") String filename) {
         SuccessResponse response = fileStorageService.confirmFile(filename);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/test")
+    public Map<String, Object> test(){
+        return Map.of(
+                "success", true,
+                "statusCode", 200,
+                "message", "Success"
+        );
     }
 }

@@ -28,6 +28,12 @@ public class FileStorageService {
     @Autowired
     private DoctypeMap doctypeMap;
 
+    @Autowired
+    private ApplicationMap applicationMap;
+
+    @Autowired
+    private FileMappingLoader fileMappingLoader;
+
     private final List<String> allowedFileTypes = List.of("png", "jpeg", "pdf", "jpg", "gif", "doc", "docx");
 
     public SuccessResponse storeFile(MultipartFile file,
@@ -36,6 +42,8 @@ public class FileStorageService {
         if (file.isEmpty()) {
             throw new RuntimeException("File is empty");
         }
+        if (app == null) throw new RuntimeException("application type cannot be null");
+        if (docTypeKey == null) throw new RuntimeException("doctype cannot be null");
         // Build the directory path dynamically
         Path uploadPath = Paths.get(uploadDir, "temp");
         String originalFilename = "";
@@ -43,14 +51,17 @@ public class FileStorageService {
         String fileType = "";
         String uniqueFileName = "";
 
-        Map<Integer, String > docMap = doctypeMap.getDoctypeMap();
-        String documentType = docMap.get(docTypeKey);
+//        Map<Integer, String > docMap = doctypeMap.getDoctypeMap();
+//        Map<Integer, String> appMap = applicationMap.getApplicationMap();
+        String documentType = fileMappingLoader.getDoctype(docTypeKey);
         if (documentType == null) {
             throw new RuntimeException("Invalid document type");
         }
 
-        String application = ApplicationMap.applicationMap.get(app);
-        if (application == null) throw new RuntimeException("Invalid application");
+        String application = fileMappingLoader.getApplication(app);
+        if (application == null) {
+            throw new RuntimeException("Invalid application");
+        }
 
         try {
             // Create directories if they don’t exist
@@ -72,7 +83,7 @@ public class FileStorageService {
                 if (baseName.length() > 10) baseName = baseName.substring(0, 10);
 
                 // ✅ Add unique suffix
-                String uniqueSuffix = String.valueOf(System.currentTimeMillis()) + UUID.randomUUID().toString().substring(0, 5); // or UUID.randomUUID().toString()
+                String uniqueSuffix = System.currentTimeMillis() + UUID.randomUUID().toString().substring(0, 5); // or UUID.randomUUID().toString()
                 uniqueFileName = baseName + "_" + uniqueSuffix + "." + fileType;
                 fileName = String.join("-", application, documentType, fileType,
                         uniqueFileName);
