@@ -1,9 +1,10 @@
-package com.icare.file_service.service;
+package com.icare.file_service.service.fileexplorer;
 
-import com.icare.file_service.dto.DirectoryDto;
-import com.icare.file_service.dto.FileDto;
-import com.icare.file_service.dto.TempFileDto;
+import com.icare.file_service.dto.fileexplorer.DirectoryDto;
+import com.icare.file_service.dto.fileexplorer.FileDto;
+import com.icare.file_service.dto.fileexplorer.TempFileDto;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.expression.spel.ast.Literal;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -27,7 +29,9 @@ public class FileExplorerServiceImpl implements FileExplorerService {
 
     @Override
     public List<DirectoryDto> getApplications() {
-        return listDirectories(Paths.get(uploadDir));
+        List<DirectoryDto> list =  listDirectories(Paths.get(uploadDir));
+        list.removeIf(item-> Objects.equals(item.getName(), "temp"));
+        return list;
     }
 
     // ---------------- DOCTYPES ----------------
@@ -88,11 +92,12 @@ public class FileExplorerServiceImpl implements FileExplorerService {
         try (Stream<Path> paths = Files.list(path)) {
             return paths
                     .filter(Files::isDirectory)
-                    .map(dir -> new DirectoryDto(
-                            dir.getFileName().toString(),
-                            dir.toString()
-                    ))
-                    .collect(Collectors.toList());
+                    .map(dir -> DirectoryDto.builder()
+                            .name(dir.getFileName().toString())
+                            .lastModified(getLastModified(dir))
+                            .size(getDirectorySize(dir))
+                            .build()
+                    ).collect(Collectors.toList());
         } catch (IOException e) {
             throw new RuntimeException("Failed to list directories", e);
         }
@@ -137,4 +142,34 @@ public class FileExplorerServiceImpl implements FileExplorerService {
             throw new RuntimeException(message);
         }
     }
+
+    private long getDirectorySize(Path directory) {
+        try (Stream<Path> walk = Files.walk(directory)) {
+            return walk
+                    .filter(Files::isRegularFile)
+                    .mapToLong(p -> {
+                        try {
+                            return Files.size(p);
+                        } catch (IOException e) {
+                            return 0L;
+                        }
+                    })
+                    .sum();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to calculate directory size", e);
+        }
+    }
+
+    private LocalDateTime getLastModified(Path directory) {
+        try {
+            return Files.getLastModifiedTime(directory)
+                    .toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDateTime();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to get last modified time", e);
+        }
+    }
+
+
 }

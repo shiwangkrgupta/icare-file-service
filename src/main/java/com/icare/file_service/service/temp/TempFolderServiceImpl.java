@@ -1,7 +1,7 @@
-package com.icare.file_service.service;
+package com.icare.file_service.service.temp;
 
-import com.icare.file_service.dto.TempCleanupResultDto;
-import com.icare.file_service.dto.TempFolderStatsDto;
+import com.icare.file_service.dto.tempcleanup.TempCleanupResultDto;
+import com.icare.file_service.dto.stats.TempFolderStatsDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;

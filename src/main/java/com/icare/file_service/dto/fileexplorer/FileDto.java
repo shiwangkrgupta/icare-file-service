@@ -1,4 +1,4 @@
-package com.icare.file_service.dto;
+package com.icare.file_service.dto.fileexplorer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

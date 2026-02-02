@@ -1,4 +1,4 @@
-package com.icare.file_service.dto;
+package com.icare.file_service.dto.tempcleanup;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class TempCleanupResultDto {
-    private int deletedFiles;
-    private long freedSpace;
+    private Integer deletedFiles;
+    private Long freedSpace;
 }

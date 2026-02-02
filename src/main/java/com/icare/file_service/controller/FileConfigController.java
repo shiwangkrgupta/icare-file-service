@@ -1,8 +1,8 @@
 package com.icare.file_service.controller;
 
-import com.icare.file_service.dto.AddConfigItemRequest;
-import com.icare.file_service.dto.ConfigItemDto;
-import com.icare.file_service.service.FileMappingService;
+import com.icare.file_service.dto.mapping.AddConfigItemRequest;
+import com.icare.file_service.dto.mapping.ConfigItemDto;
+import com.icare.file_service.service.filemapping.FileMappingService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

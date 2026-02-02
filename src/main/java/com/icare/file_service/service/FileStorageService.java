@@ -3,6 +3,7 @@ package com.icare.file_service.service;
 import com.icare.file_service.constansts.ApplicationMap;
 import com.icare.file_service.constansts.DoctypeMap;
 import com.icare.file_service.dto.SuccessResponse;
+import com.icare.file_service.service.filemapping.FileMappingLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.*;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
 

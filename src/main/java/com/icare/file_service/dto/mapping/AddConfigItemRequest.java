@@ -1,4 +1,4 @@
-package com.icare.file_service.dto;
+package com.icare.file_service.dto.mapping;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

@@ -1,22 +1,4 @@
 {
-  "applications": [
-    "lms",
-    "opd"
-  ],
-  "doctypes": [
-    "patientimage",
-    "employeeimage",
-    "employeesign",
-    "companylogo",
-    "pathologyheader",
-    "pathologyfooter",
-    "radiologyheader",
-    "radiologyfooter",
-    "radiologyattach1",
-    "radiologyattach2",
-    "radiologyreport",
-    "pathologyreport",
-    "doctorimage"
-  ]
+  "applications" : [ "lms", "opd", "test" ],
+  "doctypes" : [ "patientimage", "employeeimage", "employeesign", "companylogo", "pathologyheader", "pathologyfooter", "radiologyheader", "radiologyfooter", "radiologyattach1", "radiologyattach2", "radiologyreport", "pathologyreport", "doctorimage", "test" ]
 }
-

@@ -1,13 +1,8 @@
-package com.icare.file_service.service;
+package com.icare.file_service.service.filemapping;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.icare.file_service.dto.FileMappingConfig;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Objects;
 
 @Component

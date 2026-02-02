@@ -1,6 +1,6 @@
-package com.icare.file_service.service;
+package com.icare.file_service.service.temp;
 
-import com.icare.file_service.dto.TempCleanupConfig;
+import com.icare.file_service.dto.tempcleanup.TempCleanupConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

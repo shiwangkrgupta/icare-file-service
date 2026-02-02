@@ -1,8 +1,8 @@
-package com.icare.file_service.service;
+package com.icare.file_service.service.fileexplorer;
 
-import com.icare.file_service.dto.DirectoryDto;
-import com.icare.file_service.dto.FileDto;
-import com.icare.file_service.dto.TempFileDto;
+import com.icare.file_service.dto.fileexplorer.DirectoryDto;
+import com.icare.file_service.dto.fileexplorer.FileDto;
+import com.icare.file_service.dto.fileexplorer.TempFileDto;
 
 import java.util.List;
 

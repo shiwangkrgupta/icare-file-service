@@ -1,7 +1,7 @@
-package com.icare.file_service.service;
+package com.icare.file_service.service.temp;
 
-import com.icare.file_service.dto.TempCleanupResultDto;
-import com.icare.file_service.dto.TempFolderStatsDto;
+import com.icare.file_service.dto.tempcleanup.TempCleanupResultDto;
+import com.icare.file_service.dto.stats.TempFolderStatsDto;
 
 public interface TempFolderService {
 

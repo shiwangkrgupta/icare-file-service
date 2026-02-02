@@ -1,6 +1,4 @@
-package com.icare.file_service.dto;
-
-import java.util.Map;
+package com.icare.file_service.dto.mapping;
 
 import lombok.Data;
 import java.util.List;

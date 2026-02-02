@@ -1,6 +1,6 @@
-package com.icare.file_service.service;
+package com.icare.file_service.service.filemapping;
 
-import com.icare.file_service.dto.ConfigItemDto;
+import com.icare.file_service.dto.mapping.ConfigItemDto;
 
 import java.util.List;
 

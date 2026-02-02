@@ -1,9 +1,9 @@
 package com.icare.file_service.controller;
 
-import com.icare.file_service.dto.DirectoryDto;
-import com.icare.file_service.dto.FileDto;
-import com.icare.file_service.dto.TempFileDto;
-import com.icare.file_service.service.FileExplorerService;
+import com.icare.file_service.dto.fileexplorer.DirectoryDto;
+import com.icare.file_service.dto.fileexplorer.FileDto;
+import com.icare.file_service.dto.fileexplorer.TempFileDto;
+import com.icare.file_service.service.fileexplorer.FileExplorerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,8 @@
-package com.icare.file_service.service;
+package com.icare.file_service.service.diskusage;
 
-import com.icare.file_service.dto.ApplicationUsageDto;
-import com.icare.file_service.dto.DiskStatsDto;
+import com.icare.file_service.dto.stats.ApplicationUsageDto;
+import com.icare.file_service.dto.stats.DiskStatsDto;
+import com.icare.file_service.service.filemapping.FileMappingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

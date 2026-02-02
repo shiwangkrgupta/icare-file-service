@@ -1,8 +1,8 @@
-package com.icare.file_service.service;
+package com.icare.file_service.service.filemapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.icare.file_service.dto.ConfigItemDto;
-import com.icare.file_service.dto.FileMappingConfig;
+import com.icare.file_service.dto.mapping.ConfigItemDto;
+import com.icare.file_service.dto.mapping.FileMappingConfig;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;

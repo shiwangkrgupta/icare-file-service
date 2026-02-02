@@ -1,8 +1,8 @@
 package com.icare.file_service.controller;
 
-import com.icare.file_service.dto.ApplicationUsageDto;
-import com.icare.file_service.dto.DiskStatsDto;
-import com.icare.file_service.service.DiskUsageService;
+import com.icare.file_service.dto.stats.ApplicationUsageDto;
+import com.icare.file_service.dto.stats.DiskStatsDto;
+import com.icare.file_service.service.diskusage.DiskUsageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
