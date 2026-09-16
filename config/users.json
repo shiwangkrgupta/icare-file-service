@@ -3,7 +3,7 @@
     {
       "id": 1,
       "username": "admin",
-      "password": "$2a$10$PSZeneHkLRyLl9fbWy.9wOh13a/DB1OcUqf47mKdu25G.oQUhavVm",
+      "password": "$2y$10$DUaw4WIAThv3ULr6GBzPUuWoK5lMJPHl744q3vOzBdB.yaIm3Ny42",
       "enabled": true
     }
   ]

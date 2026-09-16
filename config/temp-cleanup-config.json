@@ -1,1 +1,1 @@
-{"enabled":false,"deleteOlderThanMinutes":120}
+{"enabled":true,"deleteOlderThanMinutes":120}
